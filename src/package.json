@@ -5,7 +5,8 @@
   "scripts": {
     "build": "webpack --progress -p --config webpack.config.js",
     "start": "node tmpServer.js",
-    "watch": "webpack --progress -d --watch --config webpack.config.js"
+    "watch": "webpack --progress -d --watch --config webpack.config.js",
+    "lint": "eslint app/js"
   },
   "author": "zjhou",
   "license": "ISC",
@@ -38,6 +39,8 @@
     "babel-preset-stage-0": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.10",
+    "eslint": "^5.0.1",
+    "eslint-plugin-react": "^7.10.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.7.2",
