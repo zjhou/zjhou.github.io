@@ -19,7 +19,7 @@ export default class Terminal extends React.Component {
     initTerminal() {
         window.terminal = PseudoTerminal('terminal', {
             bgColor: 'unset',
-            fontFamily: `"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace`,
+            fontFamily: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace',
             color: '#000',
             fontSize: 12,
             width: '100%',
@@ -32,26 +32,26 @@ export default class Terminal extends React.Component {
         });
 
 
-        terminal.addCommand('init', init);
-        Type.input('init', str => terminal.currentInput = str, 80).then(() =>{
+        window.terminal.addCommand('init', init);
+        Type.input('init', str => window.terminal.currentInput = str, 80).then(() =>{
             window.terminal.execCommand('init');
         });
 
-        terminal.oninput = function (val) {
+        window.terminal.oninput = function (val) {
             let inputs = val.split(/\s+/);
             if(inputs.length === 1) {
-                terminal.candidates = terminal.commands;
+                window.terminal.candidates = window.terminal.commands;
             }else if(
                 inputs.length === 2 &&
-                inputs[0] === "cat" && cache.results
+                inputs[0] === 'cat' && window.cache.results
             ){
                 let getTitles = result => {
-                    return result.map(c => c.data.title[0].text)
+                    return result.map(c => c.data.title[0].text);
                 };
                 try {
-                    terminal.candidates = getTitles(cache.results)
+                    window.terminal.candidates = getTitles(window.cache.results);
                 } catch (e) {
-                    console.log('error');
+                    console.warn(e);
                 }
             }
         };

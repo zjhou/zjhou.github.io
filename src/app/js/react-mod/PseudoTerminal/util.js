@@ -1,5 +1,5 @@
 const Trim = (str) => {
-    if(!str) return "";
+    if(!str) return '';
     let strArr = str.split('\n'),
         noStartSpace = strArr.filter(str => /^[^-\s].*/.test(str) && str !== '').length > 0;
     if (strArr.length === 1 || noStartSpace) {
@@ -9,8 +9,8 @@ const Trim = (str) => {
         let spaceArr = strArr.map(str => str.match(/^\s+/)).filter(v => v).map(arr => arr[0]);
         let shortestSpaceLen = Math.min.apply(null, spaceArr.map(space => space.length));
         let result = strArr.map(str => str.slice(shortestSpaceLen)).join('\n');
-        return result.startsWith("\n")
-            ? result.replace("\n", "")
+        return result.startsWith('\n')
+            ? result.replace('\n', '')
             : result;
     }
 };
@@ -40,27 +40,26 @@ const injectCSS = (cssStr) => {
 const completionWith = (fillingChar) => {
     return function(short, long) {
         return String(fillingChar).repeat(
-                String(long).length - String(short).length
-            ) + short;
-    }
+            String(long).length - String(short).length
+        ) + short;
+    };
 };
 
 const textLoaidng = (cb) => {
     var text = ['-', '\\', '|', '/'],
         timmer,
-        loading = false,
         counter = 0;
 
     return function(loading) {
         if (loading) {
             timmer = setInterval(function() {
                 counter++;
-                cb(text[counter % 4])
-            }, 80)
+                cb(text[counter % 4]);
+            }, 80);
         }else{
             clearInterval(timmer);
         }
-    }
+    };
 };
 
 
@@ -71,4 +70,4 @@ const Util = {
     completionWith: completionWith,
     loadingText: textLoaidng,
 };
-export default Util
+export default Util;

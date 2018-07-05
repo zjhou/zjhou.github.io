@@ -4,22 +4,22 @@ import localforage from 'localforage';
 
 export default async function () {
     Array.prototype.randEle = function() {
-        return this[getRandomIntInclusive(0, this.length - 1)]
+        return this[getRandomIntInclusive(0, this.length - 1)];
     };
     OfflinePluginRuntime.install();
     window.cache = window.navigator.onLine
         ? {titles: []}
         : await localforage.getItem('cache');
 
-    document.addEventListener("click", function (evt) {
+    document.addEventListener('click', function (evt) {
         let isCommand = Array.from(evt.target.classList).includes('command');
         let command = evt.target.getAttribute('data-cmd');
         if(isCommand && command){
             try{
-                exec(window.terminal, command)
+                exec(window.terminal, command);
             }catch (e){
                 console.error(JSON.stringify(e));
             }
         }
-    })
+    });
 }

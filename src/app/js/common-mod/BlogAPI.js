@@ -1,5 +1,5 @@
 import Prismic from 'prismic-javascript';
-import localforage from 'localforage'
+import localforage from 'localforage';
 import {Content, Image, Post} from './Dto';
 
 const apiEndpoint = 'https://zjhoucom.prismic.io/api/v2';
@@ -39,14 +39,14 @@ const queryAPI = function (queryFun, dto) {
         .getApi(apiEndpoint, {})
         .then(queryFun)
         .then(function (response) {
-            if(!cache.results){
-                cache.results = response.results;
+            if(!window.cache.results){
+                window.cache.results = response.results;
                 try {
-                    cache.titles = response.results.map(r => r.data.title[0].text)
+                    window.cache.titles = response.results.map(r => r.data.title[0].text);
                 } catch (e) {
-                    cache.titles = [];
+                    window.cache.titles = [];
                 }
-                localforage.setItem('cache', cache)
+                localforage.setItem('cache', window.cache);
             }
             return Promise.resolve((response.results.map(dto.translate)));
         }, function (err) {
@@ -55,7 +55,7 @@ const queryAPI = function (queryFun, dto) {
 };
 
 const getContent = (content) => {
-    let target = cache.results.filter(c => c.id === content.id);
+    let target = window.cache.results.filter(c => c.id === content.id);
     if(target.length > 0) {
         return Promise.resolve(target.map(blog[content.type].dto.translate));
     }
@@ -71,8 +71,8 @@ const getAllImages = () => {
 };
 
 const getAllContent = (searchTextParam) => {
-    if(cache.results && !searchTextParam)
-        return Promise.resolve(cache.results.map(Content.translate));
+    if(window.cache.results && !searchTextParam)
+        return Promise.resolve(window.cache.results.map(Content.translate));
     return queryAPI(api => api.query(
         searchTextParam
             ? [Prismic.Predicates.fulltext('document', searchTextParam)]

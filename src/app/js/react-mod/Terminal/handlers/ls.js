@@ -60,7 +60,7 @@ const lsHandler = (terminal, params) => {
         .catch(err => {
             terminal.loading(false);
             terminal.output(`<span style="color: red">${intl.get('error.unknown')}</span>`);
-            console.log(err);
+            console.warn(err);
             terminal.next();
         });
 };
@@ -78,4 +78,4 @@ const lsDoc = `
 export default {
     doc: lsDoc,
     handler: lsHandler
-}
+};

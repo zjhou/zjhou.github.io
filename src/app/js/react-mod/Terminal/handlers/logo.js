@@ -1,4 +1,4 @@
-import genLogo from '../../../common-mod/Logo'
+import genLogo from '../../../common-mod/Logo';
 
 const logoHandler = function (terminal, params) {
     genLogo(terminal.output(), {
@@ -27,10 +27,10 @@ const doc = `
         logo -w 100 -h 100 -s 4 -c #00ac50
         logo -w 100 -h 200 -s 5 -c yellow`;
 
-const shortopts = "w:h:s:c:";
+const shortopts = 'w:h:s:c:';
 
 export default {
     handler: logoHandler,
     doc: doc,
     shortopts: shortopts
-}
+};

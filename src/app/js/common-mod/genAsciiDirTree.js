@@ -1,6 +1,3 @@
-const output = content =>
-    (document.getElementById('screen-output').innerHTML = content);
-
 const isLeaf = sth =>
     Boolean(
         typeof sth === 'string' ||
@@ -12,10 +9,10 @@ const isLeaves = (...treeObjs) =>
 const genBranch = (branchChar = '_', branchLen = 2, mode = 'h') => {
     let branchStr = String(branchChar).repeat(branchLen);
     switch (mode) {
-        case 'h':
-            return branchStr;
-        case 'v':
-            return branchStr.split('').join('\n');
+    case 'h':
+        return branchStr;
+    case 'v':
+        return branchStr.split('').join('\n');
     }
 };
 

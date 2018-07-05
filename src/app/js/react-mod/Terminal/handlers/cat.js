@@ -2,15 +2,15 @@ import {DB, getImage} from '../../../common-mod/Utils';
 import showdown from 'showdown';
 import * as Tpl from '../../../common-mod/Template';
 import * as BlogApi from '../../../common-mod/BlogAPI';
-import markdownCss  from '../markdown.css';
-import intl from "react-intl-universal"
+import '../markdown.css';
+import intl from 'react-intl-universal';
 
 const Converter = new showdown.Converter();
 Converter.setFlavor('github');
 const catHandler = (terminal, params) => {
     if (!params[0]) {
-        if (cache.titles.length && terminal.cmdName === 'random') {
-            params[0] = cache.titles.randEle();
+        if (window.cache.titles.length && terminal.cmdName === 'random') {
+            params[0] = window.cache.titles.randEle();
         }
         else {
             terminal.next();
@@ -34,8 +34,8 @@ const catHandler = (terminal, params) => {
             return getImage(data.url)
                 .then(ele => {
                     return Promise.resolve([data, ele]);
-                }).catch(e => {
-                    throw 'Failed to get image'
+                }).catch(() => {
+                    throw 'Failed to get image';
                 });
         }
     };
@@ -99,7 +99,7 @@ const catHandler = (terminal, params) => {
                 if(typeof err === 'string'){
                     terminal.output(err);
                 }else{
-                    terminal.output(intl.get('error.unknown'))
+                    terminal.output(intl.get('error.unknown'));
                 }
                 terminal.next();
             });
@@ -116,4 +116,4 @@ const catDoc = `
 export default {
     doc: catDoc,
     handler: catHandler
-}
+};

@@ -1,5 +1,3 @@
-import intl from 'react-intl-universal';
-import {type} from '../../../common-mod/Utils';
 import Type from '../../../common-mod/Type';
 import * as BlogApi from '../../../common-mod/BlogAPI';
 const initHandler =  async function (terminal, params) {
@@ -13,7 +11,7 @@ const initHandler =  async function (terminal, params) {
     }
 
     let print = (str, speed, formatter) => {
-        let wrap = terminal.output("", "append");
+        let wrap = terminal.output('', 'append');
         return Type.input(str, content =>
             wrap.innerHTML = formatter
                 ? formatter(content)
@@ -60,4 +58,4 @@ const initDoc = `
 export default {
     doc: initDoc,
     handler: initHandler
-}
+};

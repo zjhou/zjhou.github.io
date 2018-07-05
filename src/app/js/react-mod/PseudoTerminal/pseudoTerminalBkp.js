@@ -77,13 +77,13 @@ function PseudoTerminal(wrapperId, option = {}) {
         Input.focus();
         if(HistIdx < 0) return;
         switch (dir) {
-            case 'forwards':
-                HistIdx < History.length - 1 ? HistIdx = HistIdx + 1 : false;
-                break;
+        case 'forwards':
+            HistIdx < History.length - 1 ? HistIdx = HistIdx + 1 : false;
+            break;
 
-            case 'backwards':
-                HistIdx > 0 ? HistIdx = HistIdx - 1 : false;
-                break;
+        case 'backwards':
+            HistIdx > 0 ? HistIdx = HistIdx - 1 : false;
+            break;
         }
         return HistIdx;
     }
@@ -95,13 +95,13 @@ function PseudoTerminal(wrapperId, option = {}) {
         $showArea.classList.add(...classList);
 
         switch (mode) {
-            case 'append':
-                $textArea.insertAdjacentHTML('afterend',`<pre>${Trim(result)}</pre>`);
-                return $showArea.lastElementChild;
-            case 'overwrite':
-                $showArea.innerHTML = result;
-                return $showArea;
-            default: $textArea.innerHTML = Trim(result);
+        case 'append':
+            $textArea.insertAdjacentHTML('afterend',`<pre>${Trim(result)}</pre>`);
+            return $showArea.lastElementChild;
+        case 'overwrite':
+            $showArea.innerHTML = result;
+            return $showArea;
+        default: $textArea.innerHTML = Trim(result);
         }
 
         return $showArea;
@@ -114,11 +114,11 @@ function PseudoTerminal(wrapperId, option = {}) {
         let newSessionId = getSessionInputId($newSession).id;
         Input.focusOn(newSessionId);
         autoScroll($terminal);
-        STATUS = "AVAILABLE";
+        STATUS = 'AVAILABLE';
     }
 
-    function exec(userInput = "") {
-        STATUS = "BUSY";
+    function exec(userInput = '') {
+        STATUS = 'BUSY';
         if (userInput) {
             History.push(userInput);
             HistIdx = History.length - 1;
@@ -148,7 +148,7 @@ function PseudoTerminal(wrapperId, option = {}) {
         else {
             let handler = Commands[cmdName].handler || Commands[cmdName],
                 shortopts = Commands[cmdName].shortopts,
-                usage = (Commands[cmdName].usage || "").replace(/</g, '&lt;'),
+                usage = (Commands[cmdName].usage || '').replace(/</g, '&lt;'),
                 util = {
                     cmdName: cmdName,
                     output: output,
@@ -160,7 +160,7 @@ function PseudoTerminal(wrapperId, option = {}) {
                     return handler(util, getOpt(shortopts, params));
                 }
                 catch (e) {
-                    output(`${e}${usage ? "\n\n" : ""}`);
+                    output(`${e}${usage ? '\n\n' : ''}`);
                     output(usage ? usage : '', 'append');
                     util.next();
                 }
@@ -211,16 +211,16 @@ function PseudoTerminal(wrapperId, option = {}) {
         }
 
         switch (direct) {
-            case 'up':
-                if(topNow !== range[1]){
-                    scrollTo(topNow + step);
-                }
-                break;
-            case 'down':
-                if(topNow !== range[0]) {
-                    scrollTo(topNow - step);
-                }
-                break;
+        case 'up':
+            if(topNow !== range[1]){
+                scrollTo(topNow + step);
+            }
+            break;
+        case 'down':
+            if(topNow !== range[0]) {
+                scrollTo(topNow - step);
+            }
+            break;
         }
     }
 
@@ -280,7 +280,7 @@ function PseudoTerminal(wrapperId, option = {}) {
             if(handler && typeof handler === 'function') {
                 handler(evt);
             }
-        })
+        });
     }
 
     function init($terminal) {
@@ -291,7 +291,7 @@ function PseudoTerminal(wrapperId, option = {}) {
             bgColor: '#fff',
             color: '#000',
             promptSign: '$',
-            fontFamily: `"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace`,
+            fontFamily: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace',
             inputSelectionColor: 'blue',
             fontSize: '12px',
             readOnly: false,
@@ -303,10 +303,10 @@ function PseudoTerminal(wrapperId, option = {}) {
         initNewSession($terminal);
         let handleKeyPress = {
             ArrowUp: () => {
-                Input.value = History[moveHistIdx('backwards')]||"";
+                Input.value = History[moveHistIdx('backwards')]||'';
             },
             ArrowDown: () => {
-                Input.value = History[moveHistIdx('forwards')]||"";
+                Input.value = History[moveHistIdx('forwards')]||'';
             }
         };
         ifKeyPress(handleKeyPress);
@@ -323,8 +323,8 @@ function PseudoTerminal(wrapperId, option = {}) {
 
     function help(utils) {
         let userCmds = Object.entries(Commands)
-                             .filter(entry => entry[1].type === 'addByUser')
-                             .map(entry => entry[0]).join("\n"),
+                .filter(entry => entry[1].type === 'addByUser')
+                .map(entry => entry[0]).join('\n'),
             githubAddr = 'https://github.com/zjhou/pseudoTerminal';
         utils.output(`
             <a href="${githubAddr}">PseudoTerminal</a>, Version 0.0.1 (c) zjhou. These commands are defined internally:
@@ -362,7 +362,7 @@ function PseudoTerminal(wrapperId, option = {}) {
                 utils.next();
             }
         }else{
-            utils.output("Usage: man &lt;command&gt;");
+            utils.output('Usage: man &lt;command&gt;');
             utils.next();
         }
     }
@@ -385,7 +385,7 @@ function PseudoTerminal(wrapperId, option = {}) {
 
     let $terminal = beautify(init(createTerminal(wrapperId))),
         Input,
-        STATUS = "AVAILABLE",
+        STATUS = 'AVAILABLE',
         History = [],
         HistIdx = -1,
         Commands = {
@@ -436,7 +436,7 @@ function PseudoTerminal(wrapperId, option = {}) {
             return this;
         },
         get isAvailable() {
-            return STATUS === "AVAILABLE" && !Input.value;
+            return STATUS === 'AVAILABLE' && !Input.value;
         },
         execCommand: function (cmd) {
             if(STATUS === 'AVAILABLE'){

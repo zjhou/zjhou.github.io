@@ -1,5 +1,6 @@
 import React from 'react';
 import Input from '../Input/Input';
+import PropTypes from 'prop-types';
 
 function SessInput(props) {
     return (
@@ -15,14 +16,24 @@ function SessInput(props) {
     );
 }
 
+SessInput.propTypes = {
+    promptSign: PropTypes.string,
+    isHistSess: PropTypes.bool,
+    input: PropTypes.string
+};
+
 function SessOutput(props) {
     return (
         <div className="output">
             <pre>{props.output}</pre>
         </div>
     );
-
 }
+
+SessOutput.propTypes = {
+    output: PropTypes.any
+};
+
 function Session(props) {
     return (
         <div className="session">
@@ -36,6 +47,14 @@ function Session(props) {
         </div>
     );
 }
+
+Session.propTypes = {
+    promptSign: PropTypes.string,
+    isHistSess: PropTypes.bool,
+    input: PropTypes.string,
+    output: PropTypes.string
+};
+
 export default class PseudoTerminal extends React.Component {
     constructor(props) {
         super(props);

@@ -1,13 +1,13 @@
 import {arch} from './Utils';
 function Content() {
-    this.id = "" ;
-    this.title= "";
-    this.type = "";
-    this.date = "";
+    this.id = ''; 
+    this.title= '';
+    this.type = '';
+    this.date = '';
 }
 
 function ContentTree() {
-    this.data = "";
+    this.data = '';
 }
 
 ContentTree.translate = function (contentArray) {
@@ -16,19 +16,19 @@ ContentTree.translate = function (contentArray) {
 };
 
 function Post() {
-    this.id = "";
-    this.type= "";
-    this.title = "";
-    this.content = "";
-    this.date = "";
+    this.id = '';
+    this.type= '';
+    this.title = '';
+    this.content = '';
+    this.date = '';
 }
 
 function Image() {
-    this.title = "";
-    this.type="image";
-    this.description = "";
-    this.url = "";
-    this.id = "";
+    this.title = '';
+    this.type='image';
+    this.description = '';
+    this.url = '';
+    this.id = '';
     this.date = '';
 }
 
@@ -67,4 +67,4 @@ Post.translate = function (results) {
 
 
 
-export {Image, Content, Post}
+export {Image, Content, Post};

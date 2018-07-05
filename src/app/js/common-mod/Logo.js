@@ -19,8 +19,8 @@ export default function ($wrapperEle, opt) {
             Number.isInteger(opt.logoSize);
     }
     function init(canvasWid, canvasHt) {
-        let canvas = $wrapperEle.appendChild(document.createElement("canvas"));
-        let ctx = canvas.getContext("2d");
+        let canvas = $wrapperEle.appendChild(document.createElement('canvas'));
+        let ctx = canvas.getContext('2d');
         ctx.canvas.width = canvasWid || 512;
         ctx.canvas.height = canvasHt || 512;
         ctx.canvas.style.background = OPTION.backgroundColor|| 512;
@@ -49,9 +49,9 @@ export default function ($wrapperEle, opt) {
     }
 
     Logo(
-         Math.floor((OPTION.width- Fib(OPTION.logoSize + 3)) / 2),
-         Math.floor((OPTION.height - Fib(OPTION.logoSize + 3)) / 2),
-         OPTION.logoSize,
-         OPTION.color
-    )
+        Math.floor((OPTION.width- Fib(OPTION.logoSize + 3)) / 2),
+        Math.floor((OPTION.height - Fib(OPTION.logoSize + 3)) / 2),
+        OPTION.logoSize,
+        OPTION.color
+    );
 }

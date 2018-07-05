@@ -1,8 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
 import './input.scss';
+import PropTypes from 'prop-types';
 
-const Font = `"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace`;
+const Font = '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace';
 const RealInputStyle = {
     height: 20,
     position: 'fixed',
@@ -17,7 +18,7 @@ const PseudoInputStyle = {
     fontSize: 10,
 };
 
-const Cursor = (fColor, bColor) =>
+const Cursor = () =>
     <span className="blink">&nbsp;</span>;
 
 export default class Input extends React.Component {
@@ -60,7 +61,7 @@ export default class Input extends React.Component {
             e.preventDefault();
             return false;
         }
-    };
+    }
 
     updateInput(e) {
         const move = [' ', 'ArrowLeft', 'ArrowRight', 'Home', 'End', 'Backspace'].includes(e.key)
@@ -141,3 +142,8 @@ export default class Input extends React.Component {
 
     }
 }
+
+Input.propTypes = {
+    value: PropTypes.string,
+    onEnter: PropTypes.func
+};

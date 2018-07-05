@@ -6,7 +6,7 @@ const contentT = (contents) => {
                 class="${content.type} title"
             >${content.title}</span>`;
 
-    return `<div class="title-list">${contents.map(contSpan).join("")}</div>`
+    return `<div class="title-list">${contents.map(contSpan).join('')}</div>`;
 };
 
 const postT = (post) => `
@@ -18,10 +18,10 @@ const postT = (post) => `
 
 const imageT = (image) => `
     <div class="image">
-        <pre>${image.description || ""}\n-</pre>
+        <pre>${image.description || ''}\n-</pre>
         <time>${image.date}</time>
     </div>
 `;
 
 const ErrorT = (error) => `<span>${error}</span>`;
-export {contentT, postT, imageT, ErrorT}
+export {contentT, postT, imageT, ErrorT};

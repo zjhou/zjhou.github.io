@@ -1,7 +1,7 @@
 import React from 'react';
-import ReactDom from 'react-dom'
-import App from './App'
-import Init from './init'
+import ReactDom from 'react-dom';
+import App from './App';
+import Init from './init';
 Init();
 
 window.onload = function () {

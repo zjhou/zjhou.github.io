@@ -1,4 +1,4 @@
-import Type from './Type'
+import Type from './Type';
 import localforage from 'localforage';
 
 const jumpTo = (url) => {
@@ -77,7 +77,7 @@ const getImage = async (url) => {
         try{
             imageBlob = await Get(url, 'blob');
         }catch (e){
-            throw e
+            throw e;
         }
         localforage.setItem(url, imageBlob);
     }
@@ -102,35 +102,35 @@ const exec = (terminal, cmd) => {
         .then(() => {
             setTimeout(function () {
                 terminal.execCommand(cmd);
-            }, 500)
+            }, 500);
         })
-        .catch(e => {
-            console.log("type is busy");
-        })
+        .catch(() => {
+            console.warn('type is busy');
+        });
 };
 
 function humanizerDelayCall(fun, delay = 30, times = 1, ifInc) {
     let humanizerDelay = delay => Math.round(Math.random() * delay / 2) + delay;
     let counter = 0;
     return new Promise(function (resolve, reject) {
-            let call = () => {
-                if (typeof fun === 'function') {
-                    if (times >= 0) {
-                        fun(ifInc ? counter : times);
-                        counter++;
-                        times--;
-                        setTimeout(call, humanizerDelay(delay));
-                    }
-                    else {
-                        resolve('done');
-                    }
+        let call = () => {
+            if (typeof fun === 'function') {
+                if (times >= 0) {
+                    fun(ifInc ? counter : times);
+                    counter++;
+                    times--;
+                    setTimeout(call, humanizerDelay(delay));
                 }
                 else {
-                    reject('invalid param');
+                    resolve('done');
                 }
-            };
-            call();
-        }
+            }
+            else {
+                reject('invalid param');
+            }
+        };
+        call();
+    }
     );
 
 }
@@ -172,8 +172,8 @@ function arch(posts, archName) {
             return {
                 name: name,
                 children: keys.sort().map(key => {
-                        return genTree(archObj[key], key);
-                    }
+                    return genTree(archObj[key], key);
+                }
                 )
             };
 

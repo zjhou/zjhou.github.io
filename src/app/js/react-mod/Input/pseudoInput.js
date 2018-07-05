@@ -17,7 +17,7 @@ function PseudoInput(wrapperId, option) {
         $RealInput.style.outline = 'none';
         $RealInput.style.border= 'none';
         $RealInput.style.opacity= 0;
-        $RealInput.setAttribute("autocomplete", "off");
+        $RealInput.setAttribute('autocomplete', 'off');
         // $RealInput.style.bottom= '-50px';
         $RealInput.id = 'mapWith' + wrapperId;
         if(option.readOnly) {
@@ -115,9 +115,9 @@ function PseudoInput(wrapperId, option) {
     }
 
     function ifCharClicked(doSth) {
-        $wrapper.addEventListener("click", evt => {
+        $wrapper.addEventListener('click', evt => {
             doSth(Array.from($wrapper.children).indexOf(evt.target), evt.target);
-        })
+        });
     }
 
     function completion(currentInput) {
@@ -186,7 +186,7 @@ function PseudoInput(wrapperId, option) {
         //update($wrapper, $realInput);
     }
 
-    let $wrapper, $realInput, userInput, typedUserInput, CAND ;
+    let $wrapper, $realInput, userInput, typedUserInput, CAND; 
 
     init(wrapperId);
     Util.injectCSS(`

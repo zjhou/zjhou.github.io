@@ -1,10 +1,10 @@
-import React from 'react'
-import Terminal from '../react-mod/Terminal/Terminal'
-import {DB, determineLocale, type} from '../common-mod/Utils';
-import intl from "react-intl-universal"
-import en from '../../locales/en-US'
-import zh from '../../locales/zh-CN'
-import './style.scss'
+import React from 'react';
+import Terminal from '../react-mod/Terminal/Terminal';
+import {DB, determineLocale} from '../common-mod/Utils';
+import intl from 'react-intl-universal';
+import en from '../../locales/en-US';
+import zh from '../../locales/zh-CN';
+import './style.scss';
 import {CommandList} from '../react-mod/Command/Command';
 
 const SUPPORTED_LOCALES = ['en-US', 'zh-CN']
@@ -38,8 +38,8 @@ export default class App extends React.Component {
         })
             .then(() => {
             })
-            .catch(e => {
-                console.log('failed to load locale')
+            .catch(() => {
+                console.warn('failed to load locale');
             });
 
         self.setState({
@@ -49,13 +49,13 @@ export default class App extends React.Component {
     }
 
     render() {
-         return this.state.localesLoaded &&
+        return this.state.localesLoaded &&
              <div data-lang={this.state.lang}>
                  <svg width="8" height="13" id="logo">
                      <path d="M 0 0 L 3 0 L 3 2 L 0 2 L 0 0 M 5 0 L 8 0 L 8 2 L 5 2 L 5 0 M 0 4 L 3 4 L 3 6 L 0 6 L 0 4 M 5 4 L 8 4 L 8 6 L 5 6 L 5 4 M 0 8 L 8 8 L 8 13 L 0 13 L 0 8 Z "/>
                  </svg>
                  <div className="terminal-cont">
-                    <Terminal/>
+                     <Terminal/>
                  </div>
                  <CommandList
                      commands={[
@@ -78,6 +78,6 @@ export default class App extends React.Component {
                      ]}
                  />
                  <span id="copyright">&copy; zjh, {(new Date()).getFullYear()}</span>
-            </div>
+             </div>;
     }
 }

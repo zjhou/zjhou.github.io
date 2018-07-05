@@ -6,7 +6,8 @@
     "build": "webpack --progress -p --config webpack.config.js",
     "start": "node tmpServer.js",
     "watch": "webpack --progress -d --watch --config webpack.config.js",
-    "lint": "eslint app/js"
+    "lint": "eslint app/js",
+    "lint-fix": "eslint --fix app/js"
   },
   "author": "zjhou",
   "license": "ISC",
@@ -23,6 +24,7 @@
     "localforage": "^1.7.2",
     "microbundle": "^0.2.4",
     "prismic-javascript": "^1.5.0-beta.2",
+    "prop-types": "^15.6.2",
     "pseudoterminal": "0.0.4",
     "showdown": "^1.8.6"
   },
@@ -31,6 +33,7 @@
     "@babel/preset-env": "^7.0.0-beta.42",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.5",
     "babel-loader": "^8.0.0-beta.3",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",

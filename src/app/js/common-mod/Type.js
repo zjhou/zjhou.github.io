@@ -9,25 +9,25 @@ class Type {
         let humanizerDelay = delay => Math.round(Math.random() * delay / 2) + delay;
         let counter = 0;
         return new Promise(function (resolve, reject) {
-                let call = () => {
-                    if (typeof fun === 'function') {
-                        if (times >= 0) {
-                            fun(ifInc ? counter : times);
-                            counter++;
-                            times--;
-                            setTimeout(call, humanizerDelay(delay));
-                        }
-                        else {
-                            self.isAvailable = true;
-                            resolve('done');
-                        }
+            let call = () => {
+                if (typeof fun === 'function') {
+                    if (times >= 0) {
+                        fun(ifInc ? counter : times);
+                        counter++;
+                        times--;
+                        setTimeout(call, humanizerDelay(delay));
                     }
                     else {
-                        reject('invalid param');
+                        self.isAvailable = true;
+                        resolve('done');
                     }
-                };
-                call();
-            }
+                }
+                else {
+                    reject('invalid param');
+                }
+            };
+            call();
+        }
         );
 
     }
@@ -61,7 +61,7 @@ class Type {
             return Promise.reject();
         }
         return strArr.reduce((p, x) =>
-                p.then(_ => this.inputAndDelete(x, inputFun, speed))
+            p.then(() => this.inputAndDelete(x, inputFun, speed))
             , Promise.resolve());
     }
 }

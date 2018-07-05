@@ -1,5 +1,4 @@
 import intl from 'react-intl-universal';
-import React from 'react';
 
 import cat from './handlers/cat';
 import ama from './handlers/ama';
@@ -22,10 +21,10 @@ export default {
         handler: ls.handler,
     },
     'search': {
-        usage: "Usage: search &lt;keywords&gt;",
+        usage: 'Usage: search &lt;keywords&gt;',
         handler: function (terminal, params) {
             if (params.length < 1) {
-                terminal.output(`Usage: search &lt;keywords&gt;`);
+                terminal.output('Usage: search &lt;keywords&gt;');
                 terminal.next();
             }
             else {

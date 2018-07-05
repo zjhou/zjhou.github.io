@@ -3,7 +3,8 @@ module.exports = {
         "browser": true,
         "es6": true
     },
-    "extends": "eslint:recommended",
+    "parser": "babel-eslint",
+    "extends": ["eslint:recommended", 'plugin:react/recommended'],
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -19,6 +20,12 @@ module.exports = {
             "error",
             4
         ],
+        "react/jsx-uses-react": "error",
+        "react/jsx-uses-vars": "error",
+        "no-console": [
+            "error",
+            { allow: ["warn", "error"] }
+        ],
         "linebreak-style": [
             "error",
             "unix"
@@ -29,7 +36,7 @@ module.exports = {
         ],
         "semi": [
             "error",
-            "never"
+            "always"
         ]
     }
 };
