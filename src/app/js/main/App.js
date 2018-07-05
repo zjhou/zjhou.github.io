@@ -17,7 +17,6 @@ export default class App extends React.Component {
         super(props);
         this.state = {
             localesLoaded: false
-            // localesLoaded: true
         };
         this.loadLocals = this.loadLocals.bind(this);
     }
