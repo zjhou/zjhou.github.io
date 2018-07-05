@@ -36,6 +36,7 @@
   .output {
     color: #24292e;
     &.markdown-body {
+      line-height: 2.0;
       > h1 {
         display: none;
       }
