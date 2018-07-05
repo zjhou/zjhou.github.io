@@ -6,8 +6,6 @@ import en from '../../locales/en-US'
 import zh from '../../locales/zh-CN'
 import './style.scss'
 import {CommandList} from '../react-mod/Command/Command';
-import Input from '../react-mod/Input/Input';
-import PseudoTerminal from '../react-mod/PseudoTerminal/PseudoTerminal';
 
 const SUPPORTED_LOCALES = ['en-US', 'zh-CN']
     , LOCALES = {'en-US': en, 'zh-CN': zh};
