@@ -1,3 +1,4 @@
+const eslint_formatter_pretty = require('eslint-formatter-pretty');
 const path = require('path');
 const WEBPACK = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -27,6 +28,17 @@ module.exports = {
                     options: {
                         presets: ['@babel/preset-env', '@babel/preset-react'],
                         plugins: ['syntax-dynamic-import'],
+                    }
+                }
+            },
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'eslint-loader',
+                    options: {
+                        formatter: eslint_formatter_pretty,
+                        fix: true,
                     }
                 }
             },
