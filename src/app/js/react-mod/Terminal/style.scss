@@ -1,0 +1,58 @@
+#terminal {
+  span.cmd::before {
+    //content: "";
+    position: relative;
+    margin-right: 2px;
+    top: 3px;
+    display: inline-block;
+    //width: 5px;
+    //height: 12px;
+    //border: 1px solid #111111;
+
+    width: 7px;
+    height: 14px;
+    background: repeating-linear-gradient(
+                    45deg,
+                    rgba(0, 0, 0, 0.2),
+                    rgba(0, 0, 0, 0.2) 1px,
+                    rgba(0, 0, 0, 0.3) 1px,
+                    rgba(1, 1, 1, 0.3) 2px
+    )
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: #ccfde5 solid 2px;
+    padding-bottom: 1px;
+  }
+
+  .prompt {
+    font-weight:bold;
+  }
+  span.cmd {
+    position: relative;
+    left: -4px;
+  }
+  .output {
+    color: #24292e;
+    &.markdown-body {
+      > h1 {
+        display: none;
+      }
+    }
+    &.dirTree pre{  line-height:1;  }
+    img {
+      margin: 0 0 15px;
+      max-width: 100%;
+    }
+
+    > .image, > .post {
+      pre {
+        line-height: 2;
+        color: #24292e;
+        font-family: "SFMono-Regular",Consolas,"Liberation Mono",Menlo,Courier,monospace;
+      }
+      border-radius: 2px;
+    }
+  }
+}

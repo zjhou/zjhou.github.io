@@ -1,0 +1,21 @@
+@keyframes blink {
+  from {
+    background: #000;
+    color: #fff;
+  }
+
+  to {
+    color: #000;
+    background: none;
+  }
+}
+
+.blink {
+  animation-duration: 1s;
+  animation-name: blink;
+  animation-iteration-count: infinite
+}
+
+.selected {
+  background: #ccfde5;
+}
