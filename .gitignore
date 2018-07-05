@@ -3,4 +3,5 @@
 .gitignore
 src/node_modules
 src/dist/assets
-*.log
+src/dist/index.html
+src/dist/sw.js
