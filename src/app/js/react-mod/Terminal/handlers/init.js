@@ -38,7 +38,11 @@ const initHandler =  async function (terminal, params) {
         await print(forceReload ? '[2/2] reloading...' : '[2/2] download posts', 30);
         let wrap = terminal.output('', 'append');
         terminal.loading(true, wrap);
-        await BlogApi.getAllContent();
+        try {
+            await BlogApi.getAllContent();
+        }catch (e) {
+            throw 'Failed to download posts.';
+        }
         terminal.loading(false, wrap);
     }
 
