@@ -4,6 +4,8 @@ import * as Tpl from '../../../common-mod/Template';
 import * as BlogApi from '../../../common-mod/BlogAPI';
 import '../markdown.css';
 import intl from 'react-intl-universal';
+import ReactDom from 'react-dom';
+import {RichText} from 'prismic-reactjs';
 
 const Converter = new showdown.Converter();
 Converter.setFlavor('github');
@@ -23,8 +25,7 @@ const catHandler = (terminal, params) => {
 
     let handleData = (data) => {
         if (
-            data.type === 'blog_post' ||
-            data.type === 'love_letter'
+            ['blog_post', 'rich_text_post', 'love_letter'].includes(data.type)
         ) {
             return Promise.resolve([data]);
         }
@@ -41,10 +42,15 @@ const catHandler = (terminal, params) => {
     let showData = (data) => {
         terminal.loading(false);
         if (
-            data[0].type === 'blog_post' ||
-            data[0].type === 'love_letter'
+            ['blog_post',  'love_letter'].includes(data[0].type)
         ) {
             terminal.output('', '', 'markdown-body').innerHTML = Converter.makeHtml(data[0].content);
+        }
+        else if(data[0].type === 'rich_text_post') {
+            ReactDom.render(
+                RichText.render(data[0].content),
+                terminal.output('', '', 'markdown-body')
+            );
         }
         else if (data[0].type === 'image') {
             terminal
@@ -79,6 +85,7 @@ const catHandler = (terminal, params) => {
             else {
                 terminal.output(intl.get('error.unknown'));
             }
+            console.error(err);
             terminal.next();
         });
 };

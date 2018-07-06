@@ -1,4 +1,5 @@
 import {arch} from './Utils';
+
 function Content() {
     this.id = ''; 
     this.title= '';
@@ -18,6 +19,13 @@ ContentTree.translate = function (contentArray) {
 function Post() {
     this.id = '';
     this.type= '';
+    this.title = '';
+    this.content = '';
+    this.date = '';
+}
+
+function RichPost() {
+    this.id = '';
     this.title = '';
     this.content = '';
     this.date = '';
@@ -65,6 +73,16 @@ Post.translate = function (results) {
     return post;
 };
 
+RichPost.translate = function (results) {
+    let post = new RichPost();
+    post.id = results.id;
+    post.type = results.type;
+    post.title = results.data.title[0].text;
+    post.date = results.data.date;
+    post.content = results.data.content;
+    return post;
+};
 
 
-export {Image, Content, Post};
+
+export {Image, Content, Post, RichPost};
