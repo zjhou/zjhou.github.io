@@ -1,4 +1,4 @@
-import {DB, getImage} from '../../../common-mod/Utils';
+import {getImage} from '../../../common-mod/Utils';
 import showdown from 'showdown';
 import * as Tpl from '../../../common-mod/Template';
 import * as BlogApi from '../../../common-mod/BlogAPI';
@@ -18,10 +18,8 @@ const catHandler = (terminal, params) => {
         }
     }
 
-    let data = DB.query('content.all'),
-        target,
-        filt = data => params =>
-            data.filter(content => content.title === params[0])[0];
+    let filt = data => params =>
+        data.filter(content => content.title === params[0])[0];
 
     let handleData = (data) => {
         if (
@@ -56,54 +54,33 @@ const catHandler = (terminal, params) => {
         terminal.next();
     };
 
-    if (data) {
-        target = filt(data)(params);
-        if (!target) {
-            terminal.next();
-            return false;
-        }
-        terminal.loading(true);
-        BlogApi
-            .getContent(target)
-            .then(data => {
-                return handleData(data[0]);
-            })
-            .then(showData)
-            .catch(err => {
-                terminal.loading(false);
+    terminal.loading(true);
+    BlogApi
+        .getAllContent()
+        .then(data => {
+            let target = filt(data)(params);
+            if (!target) {
+                return Promise.reject('404');
+            }
+            return Promise.resolve(target);
+        })
+        .then(data => {
+            return BlogApi.getContent(data);
+        })
+        .then(data => {
+            return handleData(data[0]);
+        })
+        .then(showData)
+        .catch(err => {
+            terminal.loading(false);
+            if (typeof err === 'string') {
                 terminal.output(err);
-                terminal.next();
-            });
-    }
-    else {
-        terminal.loading(true);
-        BlogApi
-            .getAllContent()
-            .then(data => {
-                DB.add('content.all', data);
-                target = filt(data)(params);
-                if (!target) {
-                    return Promise.reject('404');
-                }
-                return Promise.resolve(target);
-            })
-            .then(data => {
-                return BlogApi.getContent(data);
-            })
-            .then(data => {
-                return handleData(data[0]);
-            })
-            .then(showData)
-            .catch(err => {
-                terminal.loading(false);
-                if(typeof err === 'string'){
-                    terminal.output(err);
-                }else{
-                    terminal.output(intl.get('error.unknown'));
-                }
-                terminal.next();
-            });
-    }
+            }
+            else {
+                terminal.output(intl.get('error.unknown'));
+            }
+            terminal.next();
+        });
 };
 
 const catDoc = `
