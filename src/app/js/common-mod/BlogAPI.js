@@ -1,12 +1,20 @@
 import Prismic from 'prismic-javascript';
 import localforage from 'localforage';
-import {Content, Image, Post} from './Dto';
+import {Content, Image, Post, RichPost} from './Dto';
 
 const apiEndpoint = 'https://zjhoucom.prismic.io/api/v2';
 const blog = {
     content: {
         queryFun: api => api.query(''),
         dto: Content
+    },
+    rich_text_post: {
+        queryFun: function (api) {
+            return api.query(
+                Prismic.Predicates.at('document.type', 'rich_text_post')
+            );
+        },
+        dto: RichPost
     },
     blog_post: {
         queryFun: function (api) {
