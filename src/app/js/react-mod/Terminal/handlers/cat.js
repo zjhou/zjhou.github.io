@@ -9,6 +9,35 @@ import {RichText} from 'prismic-reactjs';
 
 const Converter = new showdown.Converter();
 Converter.setFlavor('github');
+const showPost = async (terminal, post) => {
+    terminal.loading(false);
+    switch (post.type) {
+    case 'blog_post':
+        terminal
+            .output('', '', 'markdown-body')
+            .innerHTML = Converter.makeHtml(post.content);
+        break;
+    case 'love_letter':
+        terminal
+            .output('', '', 'markdown-body')
+            .innerHTML = Converter.makeHtml(post.content);
+        break;
+    case 'rich_text_post':
+        ReactDom.render(
+            RichText.render(post.content),
+            terminal.output('', '', 'markdown-body')
+        );
+        break;
+    case 'image':
+        terminal
+            .output(Tpl.imageT(post), 'overwrite')
+            .appendChild(await getImage(post.url));
+        break;
+    default: terminal.next();
+    }
+    terminal.next();
+};
+
 const catHandler = (terminal, params) => {
     if (!params[0]) {
         if (window.cache.titles.length && terminal.cmdName === 'random') {
@@ -23,43 +52,6 @@ const catHandler = (terminal, params) => {
     let filt = data => params =>
         data.filter(content => content.title === params[0])[0];
 
-    let handleData = (data) => {
-        if (
-            ['blog_post', 'rich_text_post', 'love_letter'].includes(data.type)
-        ) {
-            return Promise.resolve([data]);
-        }
-        else if (data.type === 'image') {
-            return getImage(data.url)
-                .then(ele => {
-                    return Promise.resolve([data, ele]);
-                }).catch(() => {
-                    throw 'Failed to get image';
-                });
-        }
-    };
-
-    let showData = (data) => {
-        terminal.loading(false);
-        if (
-            ['blog_post',  'love_letter'].includes(data[0].type)
-        ) {
-            terminal.output('', '', 'markdown-body').innerHTML = Converter.makeHtml(data[0].content);
-        }
-        else if(data[0].type === 'rich_text_post') {
-            ReactDom.render(
-                RichText.render(data[0].content),
-                terminal.output('', '', 'markdown-body')
-            );
-        }
-        else if (data[0].type === 'image') {
-            terminal
-                .output(Tpl.imageT(data[0]), 'overwrite')
-                .appendChild(data[1]);
-        }
-        terminal.next();
-    };
-
     terminal.loading(true);
     BlogApi
         .getAllContent()
@@ -73,20 +65,15 @@ const catHandler = (terminal, params) => {
         .then(data => {
             return BlogApi.getContent(data);
         })
-        .then(data => {
-            return handleData(data[0]);
-        })
-        .then(showData)
+        .then((posts) => showPost(terminal, posts[0]))
         .catch(err => {
             terminal.loading(false);
             if (typeof err === 'string') {
-                terminal.output(err);
+                throw err;
             }
             else {
-                terminal.output(intl.get('error.unknown'));
+                throw intl.get('error.unknown');
             }
-            console.error(err);
-            terminal.next();
         });
 };
 
