@@ -1,4 +1,5 @@
 #terminal {
+  -webkit-overflow-scrolling: touch;
   span.cmd::before {
     //content: "";
     position: relative;
