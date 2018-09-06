@@ -62,7 +62,7 @@ class Type {
         }
         return strArr.reduce((p, x) =>
             p.then(() => this.inputAndDelete(x, inputFun, speed))
-            , Promise.resolve());
+        , Promise.resolve());
     }
 }
 
