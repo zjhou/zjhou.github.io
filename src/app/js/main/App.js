@@ -77,7 +77,13 @@ export default class App extends React.Component {
                          }
                      ]}
                  />
-                 <span id="copyright">&copy; zjh, {(new Date()).getFullYear()}</span>
+                 <span id="copyright">
+                    &copy; zjh, {(new Date()).getFullYear()} &nbsp;
+                     <a href="https://fufu.im" target="_blank" rel="noopener noreferrer" className="love" style={{
+                         color: '#ff8888',
+                         textDecoration: 'none'
+                     }}>❤ Moon</a>
+                 </span>
              </div>;
     }
 }
