@@ -30,10 +30,12 @@ const showPost = async (terminal, post) => {
         break;
     case 'image':
         terminal.loading(true);
-        let img = await getImage(post.url);
-        terminal.loading(false);
-        let $outputBox = terminal.output(Tpl.imageT(post), 'overwrite');
-        $outputBox.appendChild(img);
+        getImage(post.url)
+            .then(img => {
+                terminal.output(Tpl.imageT(post), 'overwrite')
+                    .appendChild(img);
+                terminal.loading(false);
+            });
         break;
     default: terminal.next();
     }
