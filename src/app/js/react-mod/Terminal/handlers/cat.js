@@ -29,9 +29,11 @@ const showPost = async (terminal, post) => {
         );
         break;
     case 'image':
-        terminal
-            .output(Tpl.imageT(post), 'overwrite')
-            .appendChild(await getImage(post.url));
+        terminal.loading(true);
+        let img = await getImage(post.url);
+        terminal.loading(false);
+        let $outputBox = terminal.output(Tpl.imageT(post), 'overwrite');
+        $outputBox.appendChild(img);
         break;
     default: terminal.next();
     }
