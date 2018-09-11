@@ -16,16 +16,20 @@ const showPost = async (terminal, post) => {
         terminal
             .output('', '', 'markdown-body')
             .innerHTML = Converter.makeHtml(post.content);
+
+        terminal.next();
         break;
     case 'love_letter':
         terminal
             .output('', '', 'markdown-body')
             .innerHTML = Converter.makeHtml(post.content);
+        terminal.next();
         break;
     case 'rich_text_post':
         ReactDom.render(
             RichText.render(post.content),
             terminal.output('', '', 'markdown-body')
+            terminal.next();
         );
         break;
     case 'image':
@@ -35,11 +39,11 @@ const showPost = async (terminal, post) => {
                 terminal.output(Tpl.imageT(post), 'overwrite')
                     .appendChild(img);
                 terminal.loading(false);
+                terminal.next();
             });
         break;
     default: terminal.next();
     }
-    terminal.next();
 };
 
 const catHandler = (terminal, params) => {
