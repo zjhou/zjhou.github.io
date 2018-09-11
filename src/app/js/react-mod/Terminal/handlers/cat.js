@@ -16,7 +16,6 @@ const showPost = async (terminal, post) => {
         terminal
             .output('', '', 'markdown-body')
             .innerHTML = Converter.makeHtml(post.content);
-
         terminal.next();
         break;
     case 'love_letter':
@@ -29,8 +28,8 @@ const showPost = async (terminal, post) => {
         ReactDom.render(
             RichText.render(post.content),
             terminal.output('', '', 'markdown-body')
-            terminal.next();
         );
+        terminal.next();
         break;
     case 'image':
         terminal.loading(true);
