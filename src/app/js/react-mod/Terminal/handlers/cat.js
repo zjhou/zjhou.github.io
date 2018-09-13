@@ -10,7 +10,6 @@ import {RichText} from 'prismic-reactjs';
 const Converter = new showdown.Converter();
 Converter.setFlavor('github');
 const showPost = async (terminal, post) => {
-    window.mixpanel.track('cat');
     terminal.loading(false);
     switch (post.type) {
     case 'blog_post':
@@ -47,6 +46,9 @@ const showPost = async (terminal, post) => {
 };
 
 const catHandler = (terminal, params) => {
+    window.mixpanel.track('cat', {
+        'params': params.join(' ')
+    });
     if (!params[0]) {
         if (window.cache.titles.length && terminal.cmdName === 'random') {
             params[0] = window.cache.titles.randEle();
