@@ -3,6 +3,7 @@ import * as OfflinePluginRuntime from 'offline-plugin/runtime';
 import localforage from 'localforage';
 
 export default async function () {
+    window.mixpanel.track('page view');
     Array.prototype.randEle = function() {
         return this[getRandomIntInclusive(0, this.length - 1)];
     };
@@ -16,7 +17,6 @@ export default async function () {
         let command = evt.target.getAttribute('data-cmd');
         if(isCommand && command){
             try{
-                window.mixpanel.track('exec: ' + command);
                 exec(window.terminal, command);
             }catch (e){
                 console.error(JSON.stringify(e));
