@@ -6,6 +6,7 @@ import genTree from '../../../common-mod/genAsciiDirTree';
 import {arch} from '../../../common-mod/Utils';
 import * as BlogApi from '../../../common-mod/BlogAPI';
 const lsHandler = (terminal, params) => {
+    window.mixpanel.track('ls');
     let keyWords;
     if (terminal.cmdName === 'search') {
         keyWords = params.join(' ');

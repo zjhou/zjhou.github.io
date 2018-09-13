@@ -16,6 +16,7 @@ export default async function () {
         let command = evt.target.getAttribute('data-cmd');
         if(isCommand && command){
             try{
+                window.mixpanel.track('exec: ' + command);
                 exec(window.terminal, command);
             }catch (e){
                 console.error(JSON.stringify(e));

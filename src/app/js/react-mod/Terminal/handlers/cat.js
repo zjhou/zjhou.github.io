@@ -10,6 +10,7 @@ import {RichText} from 'prismic-reactjs';
 const Converter = new showdown.Converter();
 Converter.setFlavor('github');
 const showPost = async (terminal, post) => {
+    window.mixpanel.track('cat');
     terminal.loading(false);
     switch (post.type) {
     case 'blog_post':

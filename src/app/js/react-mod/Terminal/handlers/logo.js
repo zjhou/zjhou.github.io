@@ -1,6 +1,7 @@
 import genLogo from '../../../common-mod/Logo';
 
 const logoHandler = function (terminal, params) {
+    window.mixpanel.track('logo');
     genLogo(terminal.output(), {
         width: Number(params.w),
         height: Number(params.h),
