@@ -1,7 +1,6 @@
+import about from './about';
 const commands = {
-    hello: function () {
-        return 'world';
-    }
+    about
 };
 
 export default commands;
