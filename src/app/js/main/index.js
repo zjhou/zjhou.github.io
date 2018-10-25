@@ -1,15 +1,5 @@
-import React from 'react';
-import ReactDom from 'react-dom';
-import App from './App';
-import Init from './init';
-Init();
-
-window.onload = function () {
-    ReactDom.render(
-        <App/>,
-        document.getElementById('app')
-    );
-};
-
-
-
+import PseudoTerminal from 'pseudoterminal';
+import commands from '../commands';
+const Terminal = PseudoTerminal(document.querySelector('#terminal'));
+Terminal.commands  = commands;
+export {Terminal};

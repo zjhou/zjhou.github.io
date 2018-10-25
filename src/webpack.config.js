@@ -10,7 +10,7 @@ const OfflinePlugin = require('offline-plugin');
 module.exports = {
     entry: {
         'main': './app/js/main/index.js',
-        'main-vendor': ['./app/js/3rd-lib/mixpanel.js', 'babel-polyfill', 'react', 'react-dom', 'react-intl-universal']
+        'main-vendor': ['pseudoterminal']
     },
     output: {
         filename: '[name].[chunkhash:6].js',
@@ -22,11 +22,14 @@ module.exports = {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                exclude: /(node_modules|bower_components)/,
+                include: [
+                    path.resolve(__dirname, 'src'),
+                    path.resolve(__dirname, 'node_modules/pseudoterminal'),
+                ],
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env', '@babel/preset-react'],
+                        presets: ['@babel/preset-env'],
                         plugins: ['syntax-dynamic-import'],
                     }
                 }
@@ -75,12 +78,12 @@ module.exports = {
             filename: '../index.html',
             chunks: ['main-vendor', 'main']
         }),
-        new OfflinePlugin({
-            autoUpdate: true,
-            ServiceWorker: {
-                output: '../sw.js'
-            }
-        }),
+        // new OfflinePlugin({
+        //     autoUpdate: true,
+        //     ServiceWorker: {
+        //         output: '../sw.js'
+        //     }
+        // }),
         new ExtractTextPlugin(`[name].[md5:contenthash:base64:6].min.css`),
     ]
 };

@@ -4,7 +4,7 @@ module.exports = {
         "es6": true
     },
     "parser": "babel-eslint",
-    "extends": ["eslint:recommended", 'plugin:react/recommended'],
+    "extends": ["eslint:recommended"],
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -12,16 +12,11 @@ module.exports = {
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
-    "plugins": [
-        "react"
-    ],
     "rules": {
         "indent": [
             "error",
             4
         ],
-        "react/jsx-uses-react": "error",
-        "react/jsx-uses-vars": "error",
         "no-console": [
             "error",
             { allow: ["warn", "error"] }
