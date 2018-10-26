@@ -22,10 +22,10 @@ module.exports = {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                include: [
-                    path.resolve(__dirname, 'src'),
-                    path.resolve(__dirname, 'node_modules/pseudoterminal'),
-                ],
+                // include: [
+                //     path.resolve(__dirname, 'src/app/js/main'),
+                //     path.resolve(__dirname, 'node_modules/pseudoterminal'),
+                // ],
                 use: {
                     loader: 'babel-loader',
                     options: {
