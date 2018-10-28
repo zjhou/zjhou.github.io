@@ -1,6 +1,9 @@
 import about from './about';
+import {getPost} from '../api';
+
 const commands = {
-    about
+    about,
+    ls: () => getPost()
 };
 
 export default commands;

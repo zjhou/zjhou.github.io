@@ -1,5 +1,6 @@
 import PseudoTerminal from 'pseudoterminal';
 import commands from '../commands';
-const Terminal = PseudoTerminal(document.querySelector('#terminal'));
+import {$} from '../utils';
+const Terminal = PseudoTerminal($('#app'));
 Terminal.commands  = commands;
 export {Terminal};
