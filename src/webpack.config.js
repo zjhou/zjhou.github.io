@@ -10,7 +10,7 @@ const OfflinePlugin = require('offline-plugin');
 module.exports = {
     entry: {
         'main': './app/js/main/index.js',
-        'main-vendor': ['pseudoterminal']
+        'main-vendor': ['./app/js/utils/runtime', 'pseudoterminal']
     },
     output: {
         filename: '[name].[chunkhash:6].js',
