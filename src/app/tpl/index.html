@@ -39,6 +39,21 @@
             box-shadow: 0 2px 20px 5px rgba(37,40,42,.05)
             /*box-shadow: 0 1px 6px #ccc;*/
         }
+
+        @media screen and (max-width: 671px) {
+            #app {
+                width: 100%;
+                height: calc(100% - 20px);
+                position: static;
+                margin: 0;
+                box-shadow: unset;
+            }
+
+            #copyright {
+                display: none;
+            }
+        }
+
         #app a {
             color: #000;
             border-bottom: solid 1px #000;
