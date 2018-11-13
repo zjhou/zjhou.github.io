@@ -1,5 +1,5 @@
 import about from './about';
-import {getPost} from '../api';
+import {getPost as ls} from '../api';
 import {MOON_URL} from '../constants/strVar';
 import {goto} from '../utils';
 
@@ -8,7 +8,7 @@ const commands = {
     moon: () => {
         goto(MOON_URL);
     },
-    ls: () => getPost()
+    ls
 };
 
 export default commands;
