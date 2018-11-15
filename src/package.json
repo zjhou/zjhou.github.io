@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "zjh.im",
   "scripts": {
-    "build": "webpack --progress -p --config webpack.config.js",
+    "build": "webpack --progress  --config webpack.config.js",
     "start": "node tmpServer.js",
     "update terminal": "npm install --save zjhou/pseudoTerminal#ref-with-rxjs",
     "watch": "webpack --progress -d --watch --config webpack.config.js",

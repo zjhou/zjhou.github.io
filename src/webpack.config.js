@@ -22,10 +22,11 @@ module.exports = {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                // include: [
-                //     path.resolve(__dirname, 'src/app/js/main'),
-                //     path.resolve(__dirname, 'node_modules/pseudoterminal'),
-                // ],
+                include: [
+                    path.resolve(__dirname, 'src'),
+                    path.resolve(__dirname, 'node_modules/pseudoterminal'),
+                ],
+                // exclude: /(node_modules|bower_components)/,
                 use: {
                     loader: 'babel-loader',
                     options: {
@@ -78,12 +79,6 @@ module.exports = {
             filename: '../index.html',
             chunks: ['main-vendor', 'main']
         }),
-        // new OfflinePlugin({
-        //     autoUpdate: true,
-        //     ServiceWorker: {
-        //         output: '../sw.js'
-        //     }
-        // }),
         new ExtractTextPlugin(`[name].[md5:contenthash:base64:6].min.css`),
     ]
 };
