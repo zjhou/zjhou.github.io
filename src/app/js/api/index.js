@@ -1,13 +1,8 @@
-import {graphQlQuery, req} from '../utils/requtils';
-import {apiEndPoint, api} from './constants';
+import {req} from '../utils/requtils';
+import {api} from './constants';
 import {format} from '../utils';
 
-const getPost = async () => {
-    let {data} = await graphQlQuery(apiEndPoint, '{posts}');
-    return data.posts;
-};
-
-const getPostNew = () => {
+const getPost= () => {
     return req(api.posts, 'GET');
 };
 
@@ -16,8 +11,8 @@ const getPostById = (id) => {
 };
 
 const getPostTitles = async () => {
-    const posts = await getPostNew();
+    const posts = await getPost();
     return posts.map(({title}) => title).join(' ');
 };
 
-export {getPost, getPostNew, getPostTitles, getPostById};
+export {getPost, getPostTitles, getPostById};
