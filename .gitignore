@@ -1,6 +1,7 @@
 .idea
 *.iml
 .gitignore
+.gitattributes
 src/node_modules
 src/dist/assets
 src/dist/index.html
