@@ -14,7 +14,7 @@
   "dependencies": {
     "github-markdown-css": "^2.10.0",
     "pseudoterminal": "github:zjhou/pseudoTerminal#ref-with-rxjs",
-    "showdown": "^1.8.6"
+    "showdown": "^1.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
