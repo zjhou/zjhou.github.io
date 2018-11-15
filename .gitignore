@@ -2,6 +2,7 @@
 *.iml
 .gitignore
 .gitattributes
+.package-lock.json
 src/node_modules
 src/dist/assets
 src/dist/index.html
