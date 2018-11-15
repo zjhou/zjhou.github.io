@@ -1,15 +1,14 @@
-const graphQlQuery = async (endpoint, queryStr) => {
-    const res = fetch(endpoint, {
-        method: 'POST',
+const req = async (url, method, data) => {
+    return (await fetch(url, {
+        method: method,
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
         },
-        body: JSON.stringify({query: queryStr})
-    });
-
-    const data = await res;
-    return data.json();
+        body: data ? JSON.stringify(data) : null
+    })).json();
 };
 
-export {graphQlQuery};
+const graphQlQuery = (endpoint, queryStr) => req(endpoint, 'POST', {query: queryStr});
+
+export {graphQlQuery, req};
