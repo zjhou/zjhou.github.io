@@ -1,13 +1,10 @@
 import showdown from 'showdown';
 import '../../style/markdown.css';
-
-showdown.setFlavor('github');
 const converter = new showdown.Converter();
+converter.setFlavor('github');
 
-export default function (paramsObject, cmdSet, $terminal, {
-  restParams,
-  fromPipe,
-}) {
+export default function (paramsObject, cmdSet, $terminal, {restParams, fromPipe}) {
+
   let wrapper = (content) =>
     `<div class="markdown-body">${content}</div>`;
 
