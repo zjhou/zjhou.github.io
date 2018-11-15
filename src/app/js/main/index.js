@@ -10,4 +10,12 @@ Terminal.commands = {
 };
 
 Terminal.humanizerExec('install');
+
+document.addEventListener('click', function (evt) {
+    let isCommand = Array.from(evt.target.classList).includes('command');
+    let command = evt.target.getAttribute('data-cmd');
+    if(isCommand && command){
+        Terminal.humanizerExec(command);
+    }
+});
 export {Terminal};
