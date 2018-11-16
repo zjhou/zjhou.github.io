@@ -1,12 +1,14 @@
 import showdown from 'showdown';
 import '../../style/markdown.css';
-const converter = new showdown.Converter();
+const converter = new showdown.Converter({
+  openLinksInNewWindow: true,
+  simpleLineBreaks: true
+});
 converter.setFlavor('github');
 
 export default function (paramsObject, cmdSet, $terminal, {restParams, fromPipe}) {
-
   let wrapper = (content) =>
     `<div class="markdown-body">${content}</div>`;
 
-  return wrapper(converter.makeHtml(fromPipe || restParams));
+  return {html: wrapper(converter.makeHtml(fromPipe || restParams))};
 }
