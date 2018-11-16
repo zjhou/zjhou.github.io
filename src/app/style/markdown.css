@@ -10,6 +10,7 @@
     color: #24292e;
     font-family:  SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace;
     word-wrap: break-word;
+    margin: 8px 0 12px;
 }
 
 .markdown-body .pl-c {
