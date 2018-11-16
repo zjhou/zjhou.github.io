@@ -5,7 +5,7 @@
   "scripts": {
     "build": "webpack --progress  --config webpack.config.js",
     "start": "node tmpServer.js",
-    "update terminal": "npm install --save zjhou/pseudoTerminal#ref-with-rxjs",
+    "update terminal": "yarn add https://github.com/zjhou/pseudoTerminal#ref-with-rxjs",
     "watch": "webpack --progress -d --watch --config webpack.config.js",
     "lint-fix": "eslint --fix app/js"
   },
@@ -13,7 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "github-markdown-css": "^2.10.0",
-    "pseudoterminal": "github:zjhou/pseudoTerminal#ref-with-rxjs",
+    "pseudoterminal": "https://github.com/zjhou/pseudoTerminal#ref-with-rxjs",
     "showdown": "^1.9.0"
   },
   "devDependencies": {
