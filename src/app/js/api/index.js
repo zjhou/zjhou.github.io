@@ -15,4 +15,8 @@ const getPostTitles = async () => {
     return posts.map(({title}) => title).join(' ');
 };
 
-export {getPost, getPostTitles, getPostById};
+const execCmdRemote = (cmd) => {
+    return req(format(api.exec, cmd), 'GET')
+}
+
+export {getPost, getPostTitles, getPostById, execCmdRemote};
