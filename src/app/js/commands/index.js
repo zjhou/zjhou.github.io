@@ -3,6 +3,7 @@ import ls from './ls';
 import rexe from './rexe';
 import tohtml from './tohtml';
 import cat from './cat';
+import fullscreen from './fullscreen';
 import {MOON_URL} from '../constants/strVar';
 import {goto} from '../utils';
 
@@ -12,7 +13,8 @@ const commands = {
     ls,
     cat,
     tohtml,
-    rexe
+    rexe,
+    fullscreen
 };
 
 export default commands;
