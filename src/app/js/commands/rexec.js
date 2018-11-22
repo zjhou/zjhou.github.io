@@ -9,8 +9,8 @@ const docDesc =
 const doc = docTpl('rexec - Run command at remote machine', 'rexec [command]', docDesc);
 export default {
     handler: async (a, b, c, {restParams}) =>{
-        const {result} = await execCmdRemote(restParams);
-        return result;
+        const {result, error} = await execCmdRemote(restParams);
+        return error || result;
     },
     doc
 }
