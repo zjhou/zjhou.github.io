@@ -2,11 +2,11 @@ import {execCmdRemote} from '../api';
 import {docTpl} from '../utils';
 
 const docDesc =
-    `rexec 能远程执行命令，目前只只支持 ls, cat；如：
-        rexec ls
-        rexec cat <file name>`
+    `rexe 能远程执行命令，目前只只支持 ls, cat；如：
+        rexe ls
+        rexe cat <file name>`
 
-const doc = docTpl('rexec - Run command at remote machine', 'rexec [command]', docDesc);
+const doc = docTpl('rexe - Run command at remote machine', 'rexe [command]', docDesc);
 export default {
     handler: async (a, b, c, {restParams}) =>{
         const {result, error} = await execCmdRemote(restParams);
