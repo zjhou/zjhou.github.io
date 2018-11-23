@@ -1,21 +1,22 @@
 import PseudoTerminal from 'pseudoterminal';
 import {$} from '../utils';
+import install from '../commands/install';
+
 const Terminal = PseudoTerminal($('#app'));
-Terminal.commands = {
-    install: async () => {
-        const {default: commands} = await import('../commands');
-        Terminal.addCommands(commands);
-        return Promise.resolve('成功安装命令，可输入 help 查看');
-    }
-};
 
-Terminal.humanizerExec('install');
 
-document.addEventListener('click', function (evt) {
+const init = async () => {
+  document.addEventListener('click', function (evt) {
     let isCommand = Array.from(evt.target.classList).includes('command');
     let command = evt.target.getAttribute('data-cmd');
     if(isCommand && command){
-        Terminal.humanizerExec(command);
+      Terminal.humanizerExec(command);
     }
-});
+  });
+
+  Terminal.addCommands({install});
+  Terminal.humanizerExecCmdArr(['install', 'install font']);
+};
+
+init().then();
 export {Terminal};
