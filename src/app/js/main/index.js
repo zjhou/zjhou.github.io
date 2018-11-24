@@ -17,14 +17,11 @@ const init = async () => {
   await Terminal.addCommands({install});
   await Terminal.humanizerExecCmdArr([
     'install font',
+    'font',
     'install',
+    'clear'
   ]);
 };
 
-init().then(() => {
-  Terminal.humanizerExecCmdArr([
-    'font',
-    'clear'
-  ])
-});
+init().then();
 export {Terminal};
