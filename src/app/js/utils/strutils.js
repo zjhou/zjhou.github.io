@@ -5,5 +5,6 @@ const format = (msg, ...args) => {
             ? args[number]
             : match));
 };
+const insert = (prefix) => (str) => prefix + str;
 
-export {format};
+export {format, insert};

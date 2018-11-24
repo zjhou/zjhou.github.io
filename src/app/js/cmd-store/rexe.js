@@ -1,5 +1,5 @@
-import {execCmdRemote} from '../api';
-import {docTpl} from '../utils';
+import {execCmdRemote} from '../api/index';
+import {docTpl} from '../utils/index';
 
 const docDesc =
     `rexe 能远程执行命令，目前只只支持 ls, cat；如：

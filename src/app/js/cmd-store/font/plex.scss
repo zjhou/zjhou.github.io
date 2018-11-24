@@ -1,0 +1,6 @@
+$font-prefix: './../../../../node_modules/@ibm/plex';
+@import 'node_modules/@ibm/plex/scss/mono/_index.scss';
+
+#app > div * {
+  font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace !important;
+}

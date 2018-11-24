@@ -22,11 +22,7 @@ module.exports = {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                include: [
-                    path.resolve(__dirname, 'src'),
-                    path.resolve(__dirname, 'node_modules/pseudoterminal'),
-                ],
-                // exclude: /(node_modules|bower_components)/,
+                exclude: /(node_modules|bower_components)/,
                 use: {
                     loader: 'babel-loader',
                     options: {
@@ -34,6 +30,15 @@ module.exports = {
                         plugins: ['syntax-dynamic-import'],
                     }
                 }
+            },
+            {
+              test: /\.(ttf|eot|woff|woff2)$/,
+              use: {
+                loader: "file-loader",
+                options: {
+                  name: "fonts/[name].[ext]",
+                },
+              },
             },
             {
                 test: /\.(js|jsx)$/,
