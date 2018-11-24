@@ -1,9 +1,8 @@
-import PseudoTerminal from 'pseudoterminal';
 import {$} from '../utils';
+import 'pseudoterminal';
 import install from '../commands/install';
 
-const Terminal = PseudoTerminal($('#app'));
-
+const Terminal = window.PseudoTerminal($('#app'));
 
 const init = async () => {
   document.addEventListener('click', function (evt) {

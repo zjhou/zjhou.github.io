@@ -2,8 +2,8 @@ import showdown from 'showdown';
 import '../../style/markdown.css';
 import {docTpl} from "../utils";
 const converter = new showdown.Converter({
-  openLinksInNewWindow: true,
-  simpleLineBreaks: true
+    openLinksInNewWindow: true,
+    simpleLineBreaks: true
 });
 converter.setFlavor('github');
 
