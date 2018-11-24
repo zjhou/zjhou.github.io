@@ -14,7 +14,7 @@
   "dependencies": {
     "@ibm/plex": "^1.2.1",
     "github-markdown-css": "^2.10.0",
-    "pseudoterminal": "https://github.com/zjhou/pseudoTerminal#ref-with-rxjs",
+    "pseudoterminal": "file:../../pseudoTerminal",
     "showdown": "^1.9.0"
   },
   "devDependencies": {

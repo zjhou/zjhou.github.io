@@ -14,10 +14,6 @@ module.exports = {
         "allowImportExportEverywhere": true
     },
     "rules": {
-        "indent": [
-            "error",
-            4
-        ],
         "no-console": [
             "error",
             { allow: ["warn", "error"] }
