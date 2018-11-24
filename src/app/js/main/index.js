@@ -14,8 +14,9 @@ const init = async () => {
     }
   });
 
+
   Terminal.addCommands({install});
-  Terminal.humanizerExecCmdArr(['install font', 'install']);
+  Terminal.humanizerExecCmdArr(['install font', 'font', 'install']);
 };
 
 init().then();

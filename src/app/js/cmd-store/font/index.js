@@ -1,2 +1,4 @@
-import './plex.scss';
-export default () => { return "字体已安装" }
+export default async () => {
+  await import('./plex.scss');
+  return "字体已应用"
+}
