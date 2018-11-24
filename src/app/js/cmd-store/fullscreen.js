@@ -1,4 +1,4 @@
-import {docTpl} from '../utils';
+import {docTpl} from '../utils/index';
 
 const desc =
     `fullscreen 进入或退出全屏模式
