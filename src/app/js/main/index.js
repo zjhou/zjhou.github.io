@@ -16,8 +16,6 @@ const init = async () => {
   await Terminal.addCommands({install});
   await Terminal.humanizerExecCmdArr([
     'install font',
-    'font',
-    'clear',
     'install',
   ]);
 };
