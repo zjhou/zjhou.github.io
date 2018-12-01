@@ -6,6 +6,7 @@
     "build": "webpack --progress  --config webpack.config.js",
     "start": "node tmpServer.js",
     "update-terminal": "npm install zjhou/pseudoTerminal#ref-with-rxjs --save",
+    "update-commands": "npm install zjhou/commands#master --save",
     "watch": "webpack --progress -d --watch --config webpack.config.js",
     "lint-fix": "eslint --fix app/js"
   },
@@ -13,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@ibm/plex": "^1.2.1",
+    "commands": "file:../../commands",
     "github-markdown-css": "^2.10.0",
     "pseudoterminal": "file:../../pseudoTerminal",
     "showdown": "^1.9.0"
