@@ -1,6 +1,6 @@
 import {$} from '../utils';
 import 'pseudoterminal';
-import install from '../commands/install';
+import install from '../basic-cmd/install';
 
 const Terminal = window.PseudoTerminal($('#app'));
 
@@ -15,7 +15,6 @@ const init = async () => {
 
   await Terminal.addCommands({install});
   await Terminal.humanizerExecCmdArr([
-    'install font',
     'install',
   ]);
 };
