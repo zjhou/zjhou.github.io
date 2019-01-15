@@ -1,11 +1,12 @@
 import showdown from 'showdown';
 import '../../style/markdown.css';
 import {docTpl} from "../utils";
-const converter = new showdown.Converter({
+let converter = new showdown.Converter({
     openLinksInNewWindow: true,
     simpleLineBreaks: true
 });
 converter.setFlavor('github');
+window.converter = converter;
 
 const doc = docTpl('tohtml -- parse markdown into html format', 'tohtml [markdown string]', 'NULL');
 export default {
