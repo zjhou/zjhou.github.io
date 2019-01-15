@@ -15,7 +15,7 @@ const init = async () => {
 
   await Terminal.addCommands({install});
   await Terminal.humanizerExecCmdArr([
-    'install',
+    'install gui',
   ]);
 };
 
