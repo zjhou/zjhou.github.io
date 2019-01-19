@@ -17,19 +17,26 @@ export default {
     let isNoParams = !paramsObj.l && !cmdName;
 
     if(isNoParams) {
-      const {default: commands} = await import('../commands');
+      const {default: commands} = await import('../basic-cmd');
       Terminal.addCommands(commands);
       return Promise.resolve('成功安装命令，可输入 help 查看');
     } else {
-      const {default: commandsInStore} = await import('../cmd-store');
+      const {default: commandsInStore} = await import('commands');
       const validCmds = commandsInStore.map(({name}) => name);
       if(paramsObj.l) {
         return '可安装的命令：\n' + validCmds.map(insert('- ')).join('\n');
       } else if(cmdName && validCmds.includes(cmdName.trim())) {
-        const {default: command} = await import('../cmd-store/' + cmdName);
-        Terminal.addCommands({
-          [cmdName]: command
-        });
+        try{
+          const {default: command} = await import(
+            /* webpackExclude: /lib.*(node_modules|src|(md|json|babelrc|gitignore|config\.js)$)/ */
+            `commands/lib/${cmdName}`
+            );
+          Terminal.addCommands({
+            [cmdName]: command
+          });
+        } catch (e) {
+          console.warn(e);
+        }
         return cmdName + ' 已经成功安装';
       }
     }

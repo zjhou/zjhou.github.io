@@ -5,85 +5,71 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const OfflinePlugin = require('offline-plugin');
+
 
 module.exports = {
-    entry: {
-        'main': './app/js/main/index.js',
-        'main-vendor': ['./app/js/utils/runtime', 'pseudoterminal']
-    },
-    output: {
-        filename: '[name].[chunkhash:6].js',
-        chunkFilename: '[name].[chunkhash:6].js',
-        publicPath: "/assets/",
-        path: path.resolve(__dirname, 'dist/assets')
-    },
-    module: {
-        rules: [
-            {
-                test: /\.(js|jsx)$/,
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env'],
-                        plugins: ['syntax-dynamic-import'],
-                    }
-                }
-            },
-            {
-              test: /\.(ttf|eot|woff|woff2)$/,
-              use: {
-                loader: "file-loader",
-                options: {
-                  name: "fonts/[name].[ext]",
-                },
-              },
-            },
-            {
-                test: /\.(js|jsx)$/,
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: 'eslint-loader',
-                    options: {
-                        formatter: eslint_formatter_pretty,
-                        fix: true,
-                    }
-                }
-            },
-            {
-                test: /\.(scss|css)$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [
-                        {loader: 'css-loader', options: {sourceMap: true}},
-                        {loader: 'sass-loader', options: {sourceMap: true}},
-                    ],
-                    publicPath: '/'
-                })
-            }
-        ]
-    },
-    plugins: [
-        // 分析打包后的模块
-        // new BundleAnalyzerPlugin({analyzerMode: 'static', reportFilename: 'report.html'}),
-
-        new CleanWebpackPlugin([
-            'dist/assets',
-        ]),
-
-        new WEBPACK.optimize.CommonsChunkPlugin({names: ['main-vendor']}),
-        new WEBPACK.optimize.CommonsChunkPlugin({
-            async: true,
-            children: true,
-            deepChildren: true,
-            minChunks: 2
-        }),
-        new HtmlWebpackPlugin({
-            template: 'app/tpl/index.html',
-            filename: '../index.html',
-            chunks: ['main-vendor', 'main']
-        }),
-        new ExtractTextPlugin(`[name].[md5:contenthash:base64:6].min.css`),
+  entry: {
+    'main-vendor': ['./app/js/utils/runtime', 'pseudoterminal'],
+    'main': './app/js/main/index.js',
+  },
+  output: {
+    filename: '[name].[chunkhash:6].js',
+    chunkFilename: '[name].[chunkhash:6].js',
+    publicPath: "/assets/",
+    path: path.resolve(__dirname, 'dist/assets')
+  },
+  devtool: 'inline-source-map',
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules|commands/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: ['syntax-dynamic-import'],
+          }
+        }
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules|commands/,
+        use: {
+          loader: 'eslint-loader',
+          options: {
+            formatter: eslint_formatter_pretty,
+            fix: true,
+          }
+        }
+      },
+      {
+        test: /\.(scss|css)$/,
+        exclude: /node_modules|commands/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {loader: 'css-loader', options: {sourceMap: true}},
+            {loader: 'sass-loader', options: {sourceMap: true}},
+          ],
+          publicPath: '/'
+        })
+      }
     ]
+  },
+  plugins: [
+    // 分析打包后的模块
+    // new BundleAnalyzerPlugin({analyzerMode: 'static', reportFilename: 'report.html'}),
+
+    new CleanWebpackPlugin([
+      'dist/assets',
+    ]),
+
+    new HtmlWebpackPlugin({
+      template: 'app/tpl/index.html',
+      filename: '../index.html',
+      chunks: ['main-vendor', 'main']
+    }),
+    new ExtractTextPlugin(`[name].[md5:contenthash:base64:6].min.css`),
+  ]
 };
