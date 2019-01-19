@@ -28,7 +28,7 @@ export default {
       } else if(cmdName && validCmds.includes(cmdName.trim())) {
         try{
           const {default: command} = await import(
-            /* webpackExclude: /lib.*(node_modules|src|(md|json|babelrc|gitignore)$)/ */
+            /* webpackExclude: /lib.*(node_modules|src|(md|json|babelrc|gitignore|config\.js)$)/ */
             `commands/lib/${cmdName}`
             );
           Terminal.addCommands({
