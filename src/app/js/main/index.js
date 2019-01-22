@@ -1,10 +1,12 @@
-import {$} from '../utils';
-import 'pseudoterminal';
 import install from '../basic-cmd/install';
+import {$} from '../utils';
 
-const Terminal = window.PseudoTerminal($('#app'));
 
 const init = async () => {
+  const {default: PseudoTerminal} = await import('pseudoterminal');
+  const Terminal = PseudoTerminal($('#terminal'));
+  window.Terminal = Terminal;
+
   document.addEventListener('click', function (evt) {
     let isCommand = Array.from(evt.target.classList).includes('command');
     let command = evt.target.getAttribute('data-cmd');
@@ -22,4 +24,3 @@ const init = async () => {
 };
 
 init().then();
-export {Terminal};

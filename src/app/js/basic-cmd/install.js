@@ -1,4 +1,3 @@
-import {Terminal} from "../main";
 import {insert} from "../utils";
 import {docTpl} from "../utils";
 
@@ -18,7 +17,7 @@ export default {
 
     if(isNoParams) {
       const {default: commands} = await import('../basic-cmd');
-      Terminal.addCommands(commands);
+      window.Terminal.addCommands(commands);
       return Promise.resolve('成功安装命令，可输入 help 查看');
     } else {
       const {default: commandsInStore} = await import('commands');
@@ -32,7 +31,7 @@ export default {
             /* webpackExclude: /lib.*(node_modules|src|(md|json|babelrc|gitignore|config\.js)$)/ */
             `commands/lib/${cmdName}`
             );
-          Terminal.addCommands({
+          window.Terminal.addCommands({
             [cmdName]: command
           });
         } catch (e) {
