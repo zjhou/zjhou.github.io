@@ -9,7 +9,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    'main-vendor': ['./app/js/utils/runtime'],
+    'main-vendor': ['./app/js/utils/runtime', 'pseudoTerminal'],
     'main': './app/js/main/index.js',
   },
   output: {
