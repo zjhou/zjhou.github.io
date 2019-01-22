@@ -9,7 +9,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    'main-vendor': ['./app/js/utils/runtime', 'pseudoterminal'],
+    'main-vendor': ['./app/js/utils/runtime'],
     'main': './app/js/main/index.js',
   },
   output: {
@@ -57,9 +57,17 @@ module.exports = {
       }
     ]
   },
+  optimization: {
+    minimize: false,
+    runtimeChunk: {
+      name: 'runtime',
+    },
+    moduleIds: 'hashed',
+    mergeDuplicateChunks: true,
+  },
   plugins: [
     // 分析打包后的模块
-    // new BundleAnalyzerPlugin({analyzerMode: 'static', reportFilename: 'report.html'}),
+    new BundleAnalyzerPlugin({analyzerMode: 'static', reportFilename: 'report.html'}),
 
     new CleanWebpackPlugin([
       'dist/assets',
