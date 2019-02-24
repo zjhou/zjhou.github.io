@@ -1,5 +1,4 @@
-import {insert} from "../utils";
-import {docTpl} from "../utils";
+import {docTpl} from '@zhoujiahao/utils';
 
 const desc =
     `install - 安装默认命令，列出命令等
@@ -20,28 +19,18 @@ export default {
       window.Terminal.addCommands(commands);
       return Promise.resolve('成功安装命令，可输入 help 查看');
     } else {
-      const {default: commandsInStore} = await import('commands');
-      const validCmds = commandsInStore.map(({name}) => name);
-      if(paramsObj.l) {
-        return '可安装的命令：\n' + validCmds.map(insert('- ')).join('\n');
-      } else if(cmdName && validCmds.includes(cmdName.trim())) {
-        try{
-          const {default: command} = await import(
-            /* webpackInclude: /lib.*js/ */
-            /* webpackExclude: /lib.*(node_modules|src|(md|json|babelrc|gitignore|config\.js)$)/ */
-            `commands/lib/${cmdName}`
-            );
-          window.Terminal.addCommands({
-            [cmdName]: command
-          });
-        } catch (e) {
-          console.warn(e);
-        }
-        return cmdName + ' 已经成功安装';
+      switch (cmdName) {
+        case 'gui' :
+          import('@zhoujiahao/blog')
+            .then(({default: gui}) => {
+              window.Terminal.addCommands({gui});
+            });
+          break;
+        default:
+          return '';
       }
     }
-
-    return ''
+    return '';
   }
 };
 
