@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "zjh.im",
   "scripts": {
-    "build": "webpack --progress  --config webpack.config.js",
+    "build": "webpack --progress --mode production --config webpack.config.js",
     "start": "node tmpServer.js",
     "update-terminal": "npm install zjhou/pseudoTerminal#ref-with-rxjs --save",
     "watch": "webpack --progress -d --watch --config webpack.config.js",
@@ -12,7 +12,7 @@
   "author": "zjhou",
   "license": "ISC",
   "dependencies": {
-    "@zhoujiahao/blog": "^1.0.12",
+    "@zhoujiahao/blog": "^1.0.13",
     "@zhoujiahao/utils": "^1.0.3",
     "github-markdown-css": "^2.10.0",
     "pseudoterminal": "file:../../pseudoTerminal",
