@@ -1,6 +1,5 @@
 import install from '../basic-cmd/install';
-import {$} from '../utils';
-
+import {$} from '@zhoujiahao/utils';
 
 const init = async () => {
   const {default: PseudoTerminal} = await import('pseudoterminal');
@@ -19,7 +18,7 @@ const init = async () => {
   await Terminal.humanizerExecCmdArr([
     'install',
     'install gui',
-    'gui',
+    'gui'
   ]);
 };
 

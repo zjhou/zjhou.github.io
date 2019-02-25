@@ -1,6 +1,6 @@
 import showdown from 'showdown';
 import '../../style/markdown.css';
-import {docTpl} from "../utils";
+import {docTpl} from '../utils';
 let converter = new showdown.Converter({
     openLinksInNewWindow: true,
     simpleLineBreaks: true
@@ -17,4 +17,4 @@ export default {
         return {html: wrapper(converter.makeHtml(fromPipe || restParams))};
     },
     doc
-}
+};
