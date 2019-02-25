@@ -20,12 +20,11 @@ export default {
       return Promise.resolve('成功安装命令，可输入 help 查看');
     } else {
       switch (cmdName) {
-        case 'gui' :
-          import('@zhoujiahao/blog')
-            .then(({default: gui}) => {
-              window.Terminal.addCommands({gui});
-            });
+        case 'gui' : {
+          const {default: gui} = await import('@zhoujiahao/blog');
+          window.Terminal.addCommands({gui});
           break;
+        }
         default:
           return '';
       }
