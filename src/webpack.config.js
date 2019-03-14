@@ -65,7 +65,7 @@ module.exports = {
   },
   plugins: [
     // 分析打包后的模块
-    new BundleAnalyzerPlugin({analyzerMode: 'static', reportFilename: 'report.html'}),
+    // new BundleAnalyzerPlugin({analyzerMode: 'static', reportFilename: 'report.html'}),
 
     new CleanWebpackPlugin([
       'dist/assets',
