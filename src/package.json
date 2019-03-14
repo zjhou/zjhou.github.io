@@ -3,17 +3,17 @@
   "version": "1.0.0",
   "description": "zjh.im",
   "scripts": {
-    "build": "webpack --progress  --config webpack.config.js",
+    "build": "webpack --progress --mode production --config webpack.config.js",
     "start": "node tmpServer.js",
     "update-terminal": "npm install zjhou/pseudoTerminal#ref-with-rxjs --save",
-    "update-commands": "npm install zjhou/commands#master --save",
     "watch": "webpack --progress -d --watch --config webpack.config.js",
     "lint-fix": "eslint --fix app/js"
   },
   "author": "zjhou",
   "license": "ISC",
   "dependencies": {
-    "commands": "file:../../commands",
+    "@zhoujiahao/blog": "^1.1.0",
+    "@zhoujiahao/utils": "^1.0.3",
     "github-markdown-css": "^2.10.0",
     "pseudoterminal": "file:../../pseudoTerminal",
     "showdown": "^1.9.0"
@@ -40,7 +40,7 @@
     "resolve-url-loader": "^2.3.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.3",
-    "webpack": "^4.28.1",
+    "webpack": "^4.29.5",
     "webpack-bundle-analyzer": "^2.11.1",
     "webpack-cli": "^3.2.1",
     "webpack-node-externals": "^1.7.2"

@@ -14,4 +14,4 @@ export default {
         return content;
     },
     doc
-}
+};

@@ -16,7 +16,7 @@ const getPostTitles = async () => {
 };
 
 const execCmdRemote = (cmd) => {
-    return req(format(api.exec, cmd), 'GET')
-}
+    return req(format(api.exec, cmd), 'GET');
+};
 
 export {getPost, getPostTitles, getPostById, execCmdRemote};

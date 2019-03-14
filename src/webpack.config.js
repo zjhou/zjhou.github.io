@@ -8,7 +8,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    'main-vendor': ['./app/js/utils/runtime'],
+    'main-vendor': [
+      './app/js/utils/runtime'
+    ],
     'main': './app/js/main/index.js',
   },
   output: {
@@ -22,7 +24,7 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules|commands/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
@@ -33,7 +35,7 @@ module.exports = {
       },
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules|commands/,
+        exclude: /node_modules|dist/,
         use: {
           loader: 'eslint-loader',
           options: {
@@ -44,7 +46,7 @@ module.exports = {
       },
       {
         test: /\.(scss|css)$/,
-        exclude: /node_modules|commands/,
+        exclude: /node_modules/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [

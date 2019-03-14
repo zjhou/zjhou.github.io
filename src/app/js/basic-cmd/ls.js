@@ -12,4 +12,4 @@ export default {
         return posts.map(title).join(' ');
     },
     doc
-}
+};
