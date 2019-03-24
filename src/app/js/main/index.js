@@ -8,10 +8,16 @@ const init = async () => {
 
   document.addEventListener('click', function (evt) {
     let isCommand = Array.from(evt.target.classList).includes('command');
+    if (!isCommand) return;
+
     let command = evt.target.getAttribute('data-cmd');
-    if(isCommand && command){
-      Terminal.humanizerExec(command);
-    }
+    let isMulti = evt.target.hasAttribute('multi');
+    let toExec = isMulti ? command.split(/\s*&\s*/) : command;
+    let execFn = isMulti
+      ? 'humanizerExecCmdArr'
+      : 'humanizerExec';
+
+    Terminal[execFn](toExec);
   });
 
   await Terminal.addCommands({install});
