@@ -26,7 +26,11 @@ const init = async () => {
     // 'install gui',
     // 'gui'
   ]);
-  import(/* webpackPrefetch: true */ '@zhoujiahao/blog/dist/vendors~main');
+  import(/* webpackPrefetch: true */ '@zhoujiahao/blog/dist/vendors~main')
+    .then(() => {
+      const $linkToblog = $('.link-to-blog');
+      $linkToblog.classList.add('command');
+    })
 };
 
 init().then();
