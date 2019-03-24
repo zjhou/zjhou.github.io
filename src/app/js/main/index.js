@@ -17,9 +17,10 @@ const init = async () => {
   await Terminal.addCommands({install});
   await Terminal.humanizerExecCmdArr([
     'install',
-    'install gui',
-    'gui'
+    // 'install gui',
+    // 'gui'
   ]);
+  import(/* webpackPrefetch: true */ '@zhoujiahao/blog/dist/vendors~main');
 };
 
 init().then();
